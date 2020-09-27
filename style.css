@@ -88,10 +88,13 @@ body {
 
 #toggles {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background: #333e;
   left: -21em;
   height: 100vh;
-  padding: 1em;
+  padding: 2em 1em;
   align-self: start;
   z-index: 3;
   -webkit-transition: 400ms;
@@ -101,8 +104,79 @@ body {
   transition: 400ms;
 }
 
+.toggle-container {
+  width: 12em;
+  margin: 0 1em;
+  padding: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 3em;
+  height: 1.5em;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #111;
+  -webkit-transition: 400ms;
+  -moz-transition: 400ms;
+  -ms-transition: 400ms;
+  -o-transition: 400ms;
+  transition: 400ms;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1em;
+  width: 1em;
+  left: 0.25em;
+  bottom: 0.25em;
+  background-color: #555;
+  -webkit-transition: 400ms;
+  -moz-transition: 400ms;
+  -ms-transition: 400ms;
+  -o-transition: 400ms;
+  transition: 400ms;
+}
+
+input:checked + .slider {
+  background-color: #ccc;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #555;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(1.5em);
+  -ms-transform: translateX(1.5em);
+  transform: translateX(1.5em);
+}
+
+.slider.round {
+  border-radius: 5em;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
 .instructions {
-  margin: 2em 0;
+  margin: 1em 0;
   text-align: center;
 }
 
@@ -130,7 +204,7 @@ body {
 .slide-container {
   display: flex;
   flex-direction: column;
-  margin: 1em;
+  margin: 0.5em;
   padding: 0.5em;
   width: 15em;
 }

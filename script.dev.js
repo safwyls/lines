@@ -11,11 +11,16 @@ var segmentsDisplay = document.getElementById("segments-display");
 var linesDisplay = document.getElementById("lines-display");
 var widthSlider = document.getElementById("width-slider");
 var widthDisplay = document.getElementById("width-display");
+var shadowSwitch = document.getElementById("shadow-switch");
 var sidebarVis = false;
 var isFullscreen = false;
+var enableShadows = false;
 var numSegments = 7;
 var numLines = 3;
 var width = 11;
+var halfWidth = Math.floor(width / 2);
+var midLeft = [0 - halfWidth, window.innerHeight / 2];
+var midRight = [window.innerWidth + halfWidth, window.innerHeight / 2];
 var palette1 = ["#264653", "#2a9d8f", "#e9c46a", "#f4a261", "#e76f51"];
 var palette2 = ["#661163", "#e22bdd", "#c68de4", "#3ff9f8", "#4c46f7"];
 var palette3 = ["#03045e", "#023e8a", "#0077b6", "#0096c7", "#00b4d8"];
@@ -40,6 +45,7 @@ clearBtn.onclick = function () {
 segmentsSlider.onchange = segmentsChange;
 linesSlider.onchange = linesChange;
 widthSlider.onchange = widthChange;
+shadowSwitch.onchange = toggleShadows;
 drawPalette();
 
 function drawPalette() {
@@ -91,6 +97,11 @@ function widthChange() {
   width = widthSlider.value;
   widthDisplay.innerText = "Width: ".concat(width, "px");
   draw();
+}
+
+function toggleShadows() {
+  console.log(shadowSwitch.checked);
+  enableShadows = shadowSwitch.checked;
 }
 
 function toggleSidebar() {
@@ -151,12 +162,13 @@ function closeFullscreen() {
 }
 
 function generatePoints(numSegments) {
-  var maxHeight = window.innerHeight - 100;
+  var maxHeight = window.innerHeight;
   var points = [];
 
   for (var i = 1; i < numSegments; i++) {
     var x = window.innerWidth / numSegments * i;
-    var y = Math.floor(Math.random() * maxHeight) + 100;
+    var y = Math.floor(Math.random() * maxHeight);
+    console.log(x, y);
     points.push([x, y]);
   }
 
@@ -165,18 +177,19 @@ function generatePoints(numSegments) {
 
 function draw() {
   var usedColors = [];
-  var c = init("canvas").c,
-      canvas = init("canvas").canvas,
-      w = canvas.width = window.innerWidth,
-      h = canvas.height = window.innerHeight,
-      ropes = [];
-  var ctx = canvas.getContext('2d');
-  var halfWidth = Math.floor(width / 2); // Fill background
+  var canvas = init("canvas").canvas;
+  var ctx = canvas.getContext('2d'); // Fill background
 
   ctx.fillStyle = "#333";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  var midLeft = [0 - halfWidth, window.innerHeight / 2];
-  var midRight = [window.innerWidth + halfWidth, window.innerHeight / 2]; // For each line generate random data and draw
+  ctx.fillRect(0, 0, canvas.width, canvas.height); // Enable Shadows
+
+  if (enableShadows) {
+    ctx.shadowColor = "black";
+    ctx.shadowBlur = 20;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 6;
+  } // For each line generate random data and draw
+
 
   for (var l = 0; l < numLines; l++) {
     var points = generatePoints(numSegments);

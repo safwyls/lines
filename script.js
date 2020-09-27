@@ -9,12 +9,17 @@ var segmentsDisplay = document.getElementById("segments-display");
 var linesDisplay = document.getElementById("lines-display");
 var widthSlider = document.getElementById("width-slider");
 var widthDisplay = document.getElementById("width-display");
+var shadowSwitch = document.getElementById("shadow-switch");
 
 var sidebarVis = false;
 var isFullscreen = false;
+var enableShadows = false;
 var numSegments = 7;
 var numLines = 3;
 var width = 11;
+var halfWidth = Math.floor(width / 2);
+var midLeft = [0 - halfWidth, window.innerHeight / 2];  
+var midRight = [window.innerWidth + halfWidth, window.innerHeight / 2];
 
 var palette1 = [
   "#264653",
@@ -72,6 +77,7 @@ clearBtn.onclick = () => { selectedPalette = -1; draw(); }
 segmentsSlider.onchange = segmentsChange;
 linesSlider.onchange = linesChange;
 widthSlider.onchange = widthChange;
+shadowSwitch.onchange = toggleShadows;
 
 drawPalette();
 
@@ -126,6 +132,12 @@ function widthChange() {
   draw();
 }
 
+function toggleShadows() {
+  console.log(shadowSwitch.checked);
+  enableShadows = shadowSwitch.checked;
+
+}
+
 function toggleSidebar() {
   sidebarVis = !sidebarVis;
   if (sidebarVis) {
@@ -178,12 +190,13 @@ function closeFullscreen() {
 
 function generatePoints(numSegments) {
 
-  let maxHeight = window.innerHeight - 100;  
+  let maxHeight = window.innerHeight;  
   let points = [];
 
   for (let i = 1; i < numSegments; i++) {
-    let x = (window.innerWidth / numSegments) * i;      
-    let y = Math.floor(Math.random() * maxHeight) + 100;
+    let x = (window.innerWidth / numSegments) * i;
+    let y = Math.floor(Math.random() * maxHeight);
+    console.log(x,y);
     points.push([x,y]);
   }
 
@@ -194,20 +207,21 @@ function draw() {
 
   let usedColors = [];
 
-  let c = init("canvas").c,
-      canvas = init("canvas").canvas,
-      w = (canvas.width = window.innerWidth),
-      h = (canvas.height = window.innerHeight),
-      ropes = [];
+  let canvas = init("canvas").canvas;
   let ctx = canvas.getContext('2d');
 
-  let halfWidth = Math.floor(width / 2);
   // Fill background
   ctx.fillStyle = "#333";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  let midLeft = [0 - halfWidth, window.innerHeight / 2];  
-  let midRight = [window.innerWidth + halfWidth, window.innerHeight / 2];
   
+  // Enable Shadows
+  if (enableShadows){
+    ctx.shadowColor = "black";
+    ctx.shadowBlur = 20;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 6;
+  }
+
   // For each line generate random data and draw
   for (let l = 0; l < numLines; l++) {
     let points = generatePoints(numSegments);

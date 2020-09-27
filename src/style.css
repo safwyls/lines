@@ -1,7 +1,6 @@
 /*=======================================================              
               License: none (public domain)
 =======================================================*/
-
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -15,54 +14,46 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-	display: block;
+  display: block;
 }
+
 body {
-	line-height: 1;
+  line-height: 1;
 }
+
 ol, ul {
-	list-style: none;
+  list-style: none;
 }
+
 blockquote, q {
-	quotes: none;
+  quotes: none;
 }
+
 blockquote:before, blockquote:after,
 q:before, q:after {
-	content: '';
-	content: none;
+  content: '';
+  content: none;
 }
+
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
+
 /*=====================================================
                       reset css end
 =======================================================*/
-
-@mixin transform($property) {
-  -webkit-transform: $property;
-      -ms-transform: $property;
-          transform: $property;
-}
-
-@mixin transition($property) {
-    -webkit-transition: $property;
-       -moz-transition: $property;
-        -ms-transition: $property;
-         -o-transition: $property;
-            transition: $property;
-}
-
 body {
   background: #333;
   color: #ddd;
@@ -80,16 +71,12 @@ body {
   z-index: 5;
 }
 
-#title {
-  text-align: center;
-  width: 10em;
-  font-size: 2.5em;
-}
-
-#subtitle {
-  opacity: 0;
-  font-size: 0.75em;
-  color: cyan;
+#full-btn {
+  position: absolute;
+  top: 0.25em;
+  right: 0.25em;
+  font-size: 1.75em;
+  z-index: 5;
 }
 
 #wrapper {
@@ -107,7 +94,11 @@ body {
   padding: 1em;
   align-self: start;
   z-index: 3;
-  @include transition(400ms);
+  -webkit-transition: 400ms;
+  -moz-transition: 400ms;
+  -ms-transition: 400ms;
+  -o-transition: 400ms;
+  transition: 400ms;
 }
 
 #draw-btn {
@@ -130,7 +121,6 @@ body {
   width: 15em;
 }
 
-// Range Slider Styling
 .slide-title {
   width: 15em;
   margin: 0.5em;
@@ -164,4 +154,21 @@ body {
   height: 1rem;
   border-radius: 50%;
   background: #555;
+}
+
+#palettes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.color-palette {
+  display: flex;
+  flex-direction: horizontal;
+  margin: 1em 0;
+}
+
+.color {
+  width: 2em;
+  height: 2em;
 }

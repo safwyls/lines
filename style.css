@@ -71,16 +71,12 @@ body {
   z-index: 5;
 }
 
-#title {
-  text-align: center;
-  width: 10em;
-  font-size: 2.5em;
-}
-
-#subtitle {
-  opacity: 0;
-  font-size: 0.75em;
-  color: cyan;
+#full-btn {
+  position: absolute;
+  top: 0.25em;
+  right: 0.25em;
+  font-size: 1.75em;
+  z-index: 5;
 }
 
 #wrapper {
@@ -158,4 +154,21 @@ body {
   height: 1rem;
   border-radius: 50%;
   background: #555;
+}
+
+#palettes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.color-palette {
+  display: flex;
+  flex-direction: horizontal;
+  margin: 1em 0;
+}
+
+.color {
+  width: 2em;
+  height: 2em;
 }

@@ -1,6 +1,7 @@
 var menuBtn = document.getElementById("menu-btn");
 var fullBtn = document.getElementById("full-btn");
 var drawBtn = document.getElementById("draw-btn")
+var clearBtn = document.getElementById("clear-btn");
 var toggles = document.getElementById("toggles");
 var segmentsSlider = document.getElementById("segments-slider");
 var linesSlider = document.getElementById("lines-slider");
@@ -67,6 +68,7 @@ var selectedPalette = -1;
 menuBtn.onclick = toggleSidebar;
 fullBtn.onclick = toggleFullscreen;
 drawBtn.onclick = draw;
+clearBtn.onclick = () => { selectedPalette = -1; draw(); }
 segmentsSlider.onchange = segmentsChange;
 linesSlider.onchange = linesChange;
 widthSlider.onchange = widthChange;
@@ -81,8 +83,9 @@ function drawPalette() {
     paletteDiv.onclick = paletteClick;
     
     for (let j = 0; j < palettes[i].length; j++) {
-      var colorDiv = document.createElement("div");
+      var colorDiv = document.createElement("div");      
       colorDiv.className = "color";
+      colorDiv.classList.add("color"+j);
       colorDiv.style.background = palettes[i][j];
       paletteDiv.appendChild(colorDiv);
     }

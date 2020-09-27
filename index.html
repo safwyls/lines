@@ -68,12 +68,16 @@ function init(elemid) {
               class="rangeslider"
               id="width-slider">
       </div>
-      <div class="slide-container">
+      <div class="slide-container" id="draw-btn-container">
         <button id="draw-btn">Draw</button>
-        <div id="instructions">Right click anywhere on the canvas to save the image to your computer.</div>
       </div>
       <div id="palettes">
-        Color Palettes
+          Color Palettes 
+          <button id="clear-btn">Random</button>
+      </div>
+      <div class="slide-container">
+        <div class="instructions">Right click anywhere on the canvas to save the image to your computer</div>
+        <div class="instructions">Press spacebar to redraw</div>
       </div>
     </div>
     <canvas id="canvas"></canvas>

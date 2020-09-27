@@ -101,16 +101,30 @@ body {
   transition: 400ms;
 }
 
-#draw-btn {
-  background: #333e;
-  color: #ddd;
-  border: 1px solid #ddd;
-  border-radius: 0.25em;
-}
-
-#instructions {
+.instructions {
   margin: 2em 0;
   text-align: center;
+}
+
+#palettes-title {
+  display: flex;
+  flex-direction: row;
+}
+
+#draw-btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#draw-btn, #clear-btn {
+  background: #333;
+  color: #ddd;
+  margin: 1em 0;
+  width: 10rem;
+  height: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
 }
 
 .slide-container {
@@ -164,11 +178,23 @@ body {
 
 .color-palette {
   display: flex;
-  flex-direction: horizontal;
+  flex-direction: row;
   margin: 1em 0;
+  border: 1px solid #ddd;
+  border-radius: 0.25em;
 }
 
 .color {
-  width: 2em;
-  height: 2em;
+  width: 2rem;
+  height: 2rem;
+}
+
+.color0 {
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+.color4 {
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
 }

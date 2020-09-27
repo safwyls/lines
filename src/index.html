@@ -1,0 +1,44 @@
+<div id="menu-btn"><i class="fas fa-bars"></i></div>
+<div id="wrapper">
+  <div id="toggles">
+    <div class="slide-container">
+      <div class="slide-title" id="segments-display">Segments: 7</div>
+      <input
+             type="range"
+             min="1"
+             max="25"
+             value="7"
+             step="1"
+             class="rangeslider"
+             id="segments-slider">
+    </div>
+    <div class="slide-container">
+        <div class="slide-title" id="lines-display">Lines: 3</div>
+        <input  
+          type="range"
+          min="1"
+          max="10"
+          value="3"
+          step="1"
+          class="rangeslider"
+          id="lines-slider">
+      </div>
+    <div class="slide-container">
+      <div class="slide-title" id="width-display">Width: 3px</div>
+      <input
+             type="range"
+             min="1"
+             max="20"
+             value="3"
+             step="1"
+             class="rangeslider"
+             id="width-slider">
+    </div>
+    <div class="slide-container">
+      <button id="draw-btn">Draw</button>
+      <div id="instructions">Right click anywhere on the canvas to save the image to your computer.</div>
+    </div>
+  </div>
+  <canvas id="canvas"></canvas>
+  <img id="canvasImg" alt="Right click to save me!"/>
+</div>
